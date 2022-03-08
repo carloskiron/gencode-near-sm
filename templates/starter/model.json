@@ -1,0 +1,43 @@
+[
+    {
+        "name": "ApplicantReference",
+        "onChain": true,
+        "properties": [
+            {
+                "name": "id",
+                "type": "u32"
+            },
+            {
+                "name": "applicantId",
+                "type": "string",
+                "constructor": true
+            },
+            {
+                "name": "date",
+                "type": "Timestamp",
+                "defaultValue": "Context.blockTimestamp"
+                
+            },
+            {
+                "name": "contactName",
+                "type": "string",
+                "constructor": true
+            },
+            {
+                "name": "company",
+                "type": "string",
+                "constructor": true
+            },
+            {
+                "name": "comment",
+                "type": "string",
+                "constructor": true
+            },
+            {
+                "name": "signedBy",
+                "type": "AccountId",
+                "defaultValue": "Context.sender"
+            }
+        ]
+    }
+]

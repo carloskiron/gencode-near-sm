@@ -1,0 +1,27 @@
+import { math, Context } from "near-sdk-core"
+import { AccountId, Timestamp } from '../../../utils';
+
+@nearBindgen
+export class <%= entity.name %> {  
+  <% for (const property of entity.properties) { %>
+    <%=property.name %>: <%=property.type %>;<% 
+  } %>
+
+  constructor(<% for (const property of entity.properties) { if(property.name !== "id" && property.constructor === true) { %>
+    <%=property.name %>: <%=property.type %>,<% 
+  } } %>) {
+    <% for (const property of entity.properties) { if(property.name !== "id" && property.constructor === true) { %>
+      this.<%=property.name %> = <%=property.name%>;<% 
+    } else {
+      if (property.name === "id") {
+        %>  this.id = math.hash32<string>(`${Context.blockTimestamp}`);<%
+      }
+      else if (property.defaultValue) {
+        %>
+      this.<%=property.name %> = <%=property.defaultValue %>;<%
+      }
+    }} %>
+  }
+
+}
+
